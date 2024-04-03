@@ -1,0 +1,6 @@
+build
+dist
+mockai.egg-info
+.pytest_cache
+.idea
+__pycache__
