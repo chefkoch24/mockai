@@ -14,6 +14,7 @@ setup(
     long_description_content_type="text/markdown",
     author="Felix Künnecke",
     author_email="kuenneckefelix@gmail.com",
+    url="https://github.com/chefkoch24/mockai",
     packages=find_packages(),
     install_requires=[
 
