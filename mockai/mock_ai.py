@@ -1,5 +1,6 @@
 import json
 import os
+from ._default import get_default
 
 
 class MockAI:
@@ -28,15 +29,29 @@ class MockAI:
     def _get_commands(self):
         commands = {}
         for k,v in self.config.items():
-            with open(v, 'r') as json_file:
-                try:
-                    value = json.load(json_file)
-                    commands[k] = value
-                except json.JSONDecodeError as e:
-                    raise ValueError(f"Invalid JSON file: {e}")
+            if k != '_default':
+                with open(v, 'r') as json_file:
+                    try:
+                        value = json.load(json_file)
+                        commands[k] = value
+                    except json.JSONDecodeError as e:
+                        raise ValueError(f"Invalid JSON file: {e}")
         return commands
 
 
 
     def get_completion(self, message:str):
-        return self.commands.get(message.strip())
+        result = self.commands.get(message.strip())
+        if result is None:
+            # read default data structure to return
+            result = self._get_default()
+        return result
+
+    def _get_default(self):
+        default = self.config.get('_default')
+        if default is not None:
+            with open(default, 'r') as json_file:
+                default_dict = json.load(json_file)
+        else:
+            default_dict = get_default()
+        return default_dict

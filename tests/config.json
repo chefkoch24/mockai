@@ -1,3 +1,4 @@
 {
+  "_default": "mock_responses/_default.json",
   "/default": "mock_responses/default.json"
 }
