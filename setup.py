@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 DESCRIPTION = 'MockAI is a library that allows you to mock AI responses using custom commands suitable for simulating responses during testing without AI inference cost.'
 
 with open("README.md", "r") as f:
@@ -8,7 +8,7 @@ with open("README.md", "r") as f:
 
 setup(
     name='mockai',
-    version='0.0.1',
+    version=VERSION,
     description="",
     long_description=long_description,
     long_description_content_type="text/markdown",
