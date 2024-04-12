@@ -30,7 +30,8 @@ class MockAI:
         commands = {}
         for k,v in self.config.items():
             if k != '_default':
-                with open(v, 'r') as json_file:
+                path = os.path.join(os.getcwd(), v)
+                with open(path, 'r') as json_file:
                     try:
                         value = json.load(json_file)
                         commands[k] = value
@@ -50,7 +51,8 @@ class MockAI:
     def _get_default(self):
         default = self.config.get('_default')
         if default is not None:
-            with open(default, 'r') as json_file:
+            path = os.path.join(os.getcwd(), default)
+            with open(path, 'r') as json_file:
                 default_dict = json.load(json_file)
         else:
             default_dict = get_default()
